@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Sir Anwar & Uzair Threats</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .page { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+    .page-title { font-size: 1.5rem; color: #4fc3f7; margin-bottom: 0.3rem; }
+    .page-sub { color: #607d9a; font-size: 0.85rem; margin-bottom: 2rem; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: #0d1b3e;
+      border: 1px solid #1e3a6a;
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+    .stat-card .label { font-size: 0.78rem; color: #607d9a; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-card .value { font-size: 2rem; font-weight: 700; color: #4fc3f7; }
+    .stat-card.danger .value { color: #ef5350; }
+    .stat-card.warn .value { color: #ffa726; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    @media(max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .section-title { font-size: 1rem; color: #90a4ae; margin-bottom: 1rem; font-weight: 600; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    th { color: #607d9a; text-align: left; padding: 10px 12px; border-bottom: 1px solid #1e3a6a; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.8px; }
+    td { padding: 10px 12px; border-bottom: 1px solid #0d1b3e; color: #cdd6e0; }
+    tr:hover td { background: #0d2147; }
+
+    .no-data { text-align: center; color: #3a5068; padding: 2rem; font-size: 0.9rem; }
+    .refresh-info { font-size: 0.78rem; color: #3a5068; text-align: right; margin-top: 0.5rem; }
+    canvas { max-height: 220px; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">🛡️ <span>Sir Anwar</span> & Uzair Threats</div>
+  <div class="nav-links">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/api">Raw API</a>
+    <a href="/logout" style="color:#ef5350;">Logout</a>
+  </div>
+</nav>
+
+<div class="page">
+  <h1 class="page-title">📊 Admin Dashboard</h1>
+  <p class="page-sub">Live traffic monitoring — auto-refreshes every 3 seconds</p>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="label">Total IPs Seen</div>
+      <div class="value" id="stat-total">0</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="label">Active Requests</div>
+      <div class="value" id="stat-active">0</div>
+    </div>
+    <div class="stat-card danger">
+      <div class="label">Blocked IPs</div>
+      <div class="value" id="stat-blocked">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Time Window</div>
+      <div class="value" style="font-size:1.4rem; color:#f9a825;">5s</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Chart -->
+    <div class="card">
+      <div class="section-title">📈 Request Rate (per IP)</div>
+      <canvas id="trafficChart"></canvas>
+    </div>
+
+    <!-- Blocked IPs -->
+    <div class="card">
+      <div class="section-title">🚫 Blocked IPs</div>
+      <table>
+        <thead><tr><th>#</th><th>IP Address</th><th>Status</th></tr></thead>
+        <tbody id="blocked-table"><tr><td colspan="3" class="no-data">No blocked IPs</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Traffic Table -->
+  <div class="card">
+    <div class="section-title">🌐 Live IP Traffic</div>
+    <table>
+      <thead>
+        <tr><th>#</th><th>IP Address</th><th>Requests (last 5s)</th><th>Threat Level</th></tr>
+      </thead>
+      <tbody id="traffic-table">
+        <tr><td colspan="4" class="no-data">No traffic data yet</td></tr>
+      </tbody>
+    </table>
+    <p class="refresh-info" id="last-refresh">Last refreshed: —</p>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

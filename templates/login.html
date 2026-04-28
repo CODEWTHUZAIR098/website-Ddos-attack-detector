@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login | Sir Anwar & Uzair Threats</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at top, #0d1b3e 0%, #050a14 100%);
+    }
+    .login-box {
+      background: #0d1b3e;
+      border: 1px solid #1e3a6a;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      width: 360px;
+    }
+    .login-box h2 {
+      text-align: center;
+      color: #4fc3f7;
+      margin-bottom: 0.3rem;
+      font-size: 1.4rem;
+    }
+    .login-box p.sub {
+      text-align: center;
+      color: #607d9a;
+      font-size: 0.82rem;
+      margin-bottom: 1.8rem;
+    }
+    .login-box label {
+      font-size: 0.82rem;
+      color: #90a4ae;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #1e3a6a;
+      background: #060d1f;
+      color: #e0e6f0;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+    .login-box input:focus { border-color: #4fc3f7; }
+    .login-box .btn { width: 100%; padding: 11px; font-size: 1rem; border-radius: 8px; margin-top: 4px; }
+    .error-msg {
+      background: #3e1010;
+      color: #ef9a9a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .shield-icon { font-size: 2.5rem; text-align: center; display: block; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+<div class="login-wrap">
+  <div class="login-box">
+    <span class="shield-icon">🛡️</span>
+    <h2>Admin Access</h2>
+    <p class="sub">Sir Anwar & Uzair Threats — Secure Portal</p>
+
+    {% if error %}
+    <div class="error-msg">⚠️ {{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="/login">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Enter username" required autofocus>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter password" required>
+      <button type="submit" class="btn btn-primary">🔐 Login</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
