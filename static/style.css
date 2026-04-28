@@ -1,0 +1,118 @@
+/* static/css/style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0a0f1e;
+    color: #e0e6f0;
+    min-height: 100vh;
+}
+
+/* ── Navbar ── */
+.navbar {
+    background: linear-gradient(90deg, #0d1b3e, #122150);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1e3a6a;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar .logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #4fc3f7;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .logo span {
+    color: #f9a825;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #a0b4cc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #4fc3f7;
+}
+
+/* ── Buttons ── */
+.btn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #1565c0;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1976d2;
+}
+
+.btn-danger {
+    background: #c62828;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #e53935;
+}
+
+/* ── Cards ── */
+.card {
+    background: #0d1b3e;
+    border: 1px solid #1e3a6a;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+/* ── Status Badge ── */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-safe {
+    background: #1b5e20;
+    color: #a5d6a7;
+}
+
+.badge-attack {
+    background: #7f0000;
+    color: #ef9a9a;
+}
+
+.badge-blocked {
+    background: #4a148c;
+    color: #ce93d8;
+}
